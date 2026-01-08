@@ -1,93 +1,135 @@
-# gitlab-project
+# <img src="docs/opentofu.png" alt="opentofu" height="20"/> gitlab-project
 
+Zarządzanie projektami w GitLab
 
+<!-- BEGIN_TF_DOCS -->
+## Requirements
 
-## Getting started
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.5 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.6.1 |
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Providers
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+| Name | Version |
+|------|---------|
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.6.1 |
 
-## Add your files
+## Modules
 
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+No modules.
 
+## Resources
+
+| Name | Type |
+|------|------|
+| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/branch_protection) | resource |
+| [gitlab_pipeline_schedule.ci_schedule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/pipeline_schedule) | resource |
+| [gitlab_pipeline_schedule_variable.ci_schedule_variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/pipeline_schedule_variable) | resource |
+| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project) | resource |
+| [gitlab_project_approval_rule.approval_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_approval_rule) | resource |
+| [gitlab_project_environment.environment](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_environment) | resource |
+| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_label) | resource |
+| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_mirror) | resource |
+| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_push_rules) | resource |
+| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_variable) | resource |
+| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/tag_protection) | resource |
+| [gitlab_group.approval_rule_groups](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/data-sources/group) | data source |
+| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/data-sources/group) | data source |
+| [gitlab_user.approval_rule_users](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/data-sources/user) | data source |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_allow_merge_on_skipped_pipeline"></a> [allow\_merge\_on\_skipped\_pipeline](#input\_allow\_merge\_on\_skipped\_pipeline) | Set to true if you want to treat skipped pipelines as if they finished with success. | `bool` | `false` | no |
+| <a name="input_allowed_avatar_types_json"></a> [allowed\_avatar\_types\_json](#input\_allowed\_avatar\_types\_json) | Path to allowed avatar types json | `string` | `""` | no |
+| <a name="input_allowed_project_types_json"></a> [allowed\_project\_types\_json](#input\_allowed\_project\_types\_json) | Path to allowed project types json | `string` | `""` | no |
+| <a name="input_approval_rules"></a> [approval\_rules](#input\_approval\_rules) | Project-level merge request approval rules keyed by rule name. | <pre>map(object({<br/>    approvals_required = number<br/>    user_ids           = optional(list(number), [])<br/>    usernames          = optional(list(string), [])<br/>    group_ids          = optional(list(number), [])<br/>    group_paths        = optional(list(string), [])<br/>    protected_branches = optional(list(string), [])<br/>  }))</pre> | `{}` | no |
+| <a name="input_archived"></a> [archived](#input\_archived) | Whether the GitLab project should be archived | `bool` | `false` | no |
+| <a name="input_autoclose_referenced_issues"></a> [autoclose\_referenced\_issues](#input\_autoclose\_referenced\_issues) | Autoclose referenced issues | `bool` | `true` | no |
+| <a name="input_avatar"></a> [avatar](#input\_avatar) | Type of the avatar for the group (default: from type) | `string` | `""` | no |
+| <a name="input_avatars_dir"></a> [avatars\_dir](#input\_avatars\_dir) | Avatars directory png files | `string` | `""` | no |
+| <a name="input_build_git_strategy"></a> [build\_git\_strategy](#input\_build\_git\_strategy) | The Git strategy. Defaults to fetch. | `string` | `"clone"` | no |
+| <a name="input_ci_schedules"></a> [ci\_schedules](#input\_ci\_schedules) | List of GitLab CI pipeline schedules for this project with optional variables. | <pre>list(object({<br/>    name          = string<br/>    description   = string<br/>    ref           = string<br/>    cron          = string<br/>    cron_timezone = optional(string)<br/>    active        = optional(bool)<br/>    variables = optional(map(object({<br/>      value         = string<br/>      variable_type = optional(string)<br/>    })))<br/>  }))</pre> | `[]` | no |
+| <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | Default branch | `string` | `""` | no |
+| <a name="input_description"></a> [description](#input\_description) | Repository Description | `string` | n/a | yes |
+| <a name="input_environments"></a> [environments](#input\_environments) | Project environments keyed by name. | <pre>map(object({<br/>    description          = optional(string)<br/>    auto_stop_setting    = optional(string)<br/>    external_url         = optional(string)<br/>    kubernetes_namespace = optional(string)<br/>    tier                 = optional(string)<br/>    stop_before_destroy  = optional(bool, false)<br/>  }))</pre> | `{}` | no |
+| <a name="input_gitlab_ci_path"></a> [gitlab\_ci\_path](#input\_gitlab\_ci\_path) | Path to the GitLab CI file | `string` | `null` | no |
+| <a name="input_is_enable_conventional_commits_push_rule"></a> [is\_enable\_conventional\_commits\_push\_rule](#input\_is\_enable\_conventional\_commits\_push\_rule) | Enable conventional commits push rule | `bool` | `false` | no |
+| <a name="input_is_gitlab_free"></a> [is\_gitlab\_free](#input\_is\_gitlab\_free) | Is the project a free tier project | `bool` | `true` | no |
+| <a name="input_labels"></a> [labels](#input\_labels) | n/a | <pre>map(object({<br/>    description = string<br/>    color       = string<br/>  }))</pre> | `{}` | no |
+| <a name="input_mirror_branch_regex"></a> [mirror\_branch\_regex](#input\_mirror\_branch\_regex) | Regular expression used to limit which branches are mirrored | `string` | `""` | no |
+| <a name="input_mirror_only_protected_branches"></a> [mirror\_only\_protected\_branches](#input\_mirror\_only\_protected\_branches) | Mirror only protected branches | `bool` | `false` | no |
+| <a name="input_mirror_url"></a> [mirror\_url](#input\_mirror\_url) | URL for the project mirror | `string` | `""` | no |
+| <a name="input_name"></a> [name](#input\_name) | Repository Name | `string` | n/a | yes |
+| <a name="input_only_allow_merge_if_pipeline_succeeds"></a> [only\_allow\_merge\_if\_pipeline\_succeeds](#input\_only\_allow\_merge\_if\_pipeline\_succeeds) | Set to true if you want allow merges only if a pipeline succeeds. | `bool` | `true` | no |
+| <a name="input_parent_group"></a> [parent\_group](#input\_parent\_group) | Parent Group | `string` | n/a | yes |
+| <a name="input_project_type"></a> [project\_type](#input\_project\_type) | Project type | `string` | `""` | no |
+| <a name="input_protected_branches"></a> [protected\_branches](#input\_protected\_branches) | n/a | <pre>map(object({<br/>    push_access_level  = string<br/>    merge_access_level = string<br/>    allow_force_push   = optional(bool, false)<br/>  }))</pre> | <pre>{<br/>  "develop": {<br/>    "merge_access_level": "maintainer",<br/>    "push_access_level": "no one"<br/>  },<br/>  "main": {<br/>    "merge_access_level": "maintainer",<br/>    "push_access_level": "no one"<br/>  }<br/>}</pre> | no |
+| <a name="input_protected_tags"></a> [protected\_tags](#input\_protected\_tags) | Protected tags | <pre>map(object({<br/>    create_access_level = string<br/>  }))</pre> | <pre>{<br/>  "v*": {<br/>    "create_access_level": "maintainer"<br/>  }<br/>}</pre> | no |
+| <a name="input_tags"></a> [tags](#input\_tags) | Tags | `list(string)` | `[]` | no |
+| <a name="input_variables"></a> [variables](#input\_variables) | n/a | <pre>map(object({<br/>    value             = string<br/>    description       = optional(string)<br/>    protected         = optional(bool)<br/>    masked            = optional(bool)<br/>    environment_scope = optional(string)<br/>  }))</pre> | `{}` | no |
+| <a name="input_visibility"></a> [visibility](#input\_visibility) | The project's visibility | `string` | `"private"` | no |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| <a name="output_description"></a> [description](#output\_description) | n/a |
+| <a name="output_name"></a> [name](#output\_name) | n/a |
+<!-- END_TF_DOCS -->
+
+## CI pipeline schedulers
+
+Moduł umożliwia definiowanie schedulerów CI wraz z zestawem zmiennych przekazywanych do pipeline'ów. Każdy scheduler przyjmuje pola `name`, `description`, `ref`, `cron`, opcjonalne `cron_timezone` (domyślnie `UTC`), `active` (domyślnie `true`) oraz mapę `variables`, w której kluczem jest nazwa zmiennej, a wartością obiekt `{ value, variable_type }` z typem `env_var` (domyślnie) lub `file`. Gałąź podana w `ref` jest automatycznie poprzedzana `refs/heads/` dla zachowania zgodności z API GitLaba; pełne referencje (`refs/tags/...`) podawaj wprost.
+
+Przykładowa konfiguracja dwóch schedulerów:
+
+```hcl
+module "gitlab_project" {
+  source = "path/to/modules/gitlab-project"
+
+  # ...pozostałe argumenty modułu
+
+  ci_schedules = [
+    {
+      name          = "nightly"
+      description   = "Nightly smoke tests on main"
+      ref           = "main"
+      cron          = "0 1 * * *"
+      cron_timezone = "Europe/Warsaw"
+      variables = {
+        ENVIRONMENT = { value = "staging" }
+        SMOKE_SCOPE = { value = "critical" }
+      }
+    },
+    {
+      name        = "weekly-security"
+      description = "Weekly security scan on develop"
+      ref         = "develop"
+      cron        = "30 2 * * 1"
+      active      = false
+      variables = {
+        SCAN_DEPTH = { value = "full" }
+        LICENSES   = { value = "approved", variable_type = "file" }
+      }
+    }
+  ]
+}
 ```
-cd existing_repo
-git remote add origin https://gitlab.com/pl.rachuna-net/artifacts/opentofu/gitlab-project.git
-git branch -M main
-git push -uf origin main
-```
 
-## Integrate with your tools
+---
+## Contributions
+Jeśli masz pomysły na ulepszenia, zgłoś problemy, rozwidl repozytorium lub utwórz Merge Request. Wszystkie wkłady są mile widziane!
+[Contributions](CONTRIBUTING.md)
 
-* [Set up project integrations](https://gitlab.com/pl.rachuna-net/artifacts/opentofu/gitlab-project/-/settings/integrations)
-
-## Collaborate with your team
-
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
-
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
-
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
-
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
-
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
-
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
-
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
+---
 ## License
-For open source projects, say how it is licensed.
+Projekt licencjonowany jest na warunkach [Licencji MIT](LICENSE).
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+---
+# Author Information
+### &emsp; Maciej Rachuna
+# <img src="docs/logo.png" alt="rachuna-net.pl" height="100"/>
