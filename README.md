@@ -8,13 +8,13 @@ Zarządzanie projektami w GitLab
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.5 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.6.1 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.7.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.6.1 |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.7.0 |
 
 ## Modules
 
@@ -24,20 +24,20 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/branch_protection) | resource |
-| [gitlab_pipeline_schedule.ci_schedule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/pipeline_schedule) | resource |
-| [gitlab_pipeline_schedule_variable.ci_schedule_variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/pipeline_schedule_variable) | resource |
-| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project) | resource |
-| [gitlab_project_approval_rule.approval_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_approval_rule) | resource |
-| [gitlab_project_environment.environment](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_environment) | resource |
-| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_label) | resource |
-| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_mirror) | resource |
-| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_push_rules) | resource |
-| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/project_variable) | resource |
-| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/resources/tag_protection) | resource |
-| [gitlab_group.approval_rule_groups](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/data-sources/group) | data source |
-| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/data-sources/group) | data source |
-| [gitlab_user.approval_rule_users](https://registry.terraform.io/providers/gitlabhq/gitlab/18.6.1/docs/data-sources/user) | data source |
+| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/branch_protection) | resource |
+| [gitlab_pipeline_schedule.ci_schedule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/pipeline_schedule) | resource |
+| [gitlab_pipeline_schedule_variable.ci_schedule_variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/pipeline_schedule_variable) | resource |
+| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project) | resource |
+| [gitlab_project_approval_rule.approval_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project_approval_rule) | resource |
+| [gitlab_project_environment.environment](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project_environment) | resource |
+| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project_label) | resource |
+| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project_mirror) | resource |
+| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project_push_rules) | resource |
+| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/project_variable) | resource |
+| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/resources/tag_protection) | resource |
+| [gitlab_group.approval_rule_groups](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/data-sources/group) | data source |
+| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/data-sources/group) | data source |
+| [gitlab_user.approval_rule_users](https://registry.terraform.io/providers/gitlabhq/gitlab/18.7.0/docs/data-sources/user) | data source |
 
 ## Inputs
 
