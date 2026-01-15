@@ -1,0 +1,7 @@
+
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "gitlab>pl.rachuna-net/platform-policies//renovate/preset/opentofu-module.json"
+  ]
+}
