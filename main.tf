@@ -15,6 +15,7 @@ resource "gitlab_project" "project" {
   only_allow_merge_if_all_discussions_are_resolved = true
   only_allow_merge_if_pipeline_succeeds            = var.only_allow_merge_if_pipeline_succeeds
   allow_merge_on_skipped_pipeline                  = var.allow_merge_on_skipped_pipeline
+  ci_push_repository_for_job_token_allowed         = true
 
   lifecycle {
     prevent_destroy = true
