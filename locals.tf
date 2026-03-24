@@ -1,13 +1,13 @@
 locals {
-  avatars_dir = var.avatars_dir == "" ? "${path.root}/images/project" : var.avatars_dir
+  avatars_dir = var.avatars_dir == "" ? path.root : var.avatars_dir
 
   allowed_project_types_json = var.allowed_avatar_types_json == "" ? "${path.root}/data/allowed_project_types.json" : var.allowed_project_types_json
   allowed_project_types      = jsondecode(try(file(local.allowed_project_types_json), null) == null ? file("${path.module}/data/allowed_project_types.json") : file(local.allowed_project_types_json))
 
   # Define the allowed project types as a map
-  avatar_project = local.allowed_project_types[var.project_type].avatar == "" ? null : "${local.avatars_dir}/${local.allowed_project_types[var.project_type].avatar}.png"
+  avatar_project = local.allowed_project_types[var.project_type].avatar == "" ? null : "${local.avatars_dir}/${local.allowed_project_types[var.project_type].avatar}"
   avatar_path    = var.avatar == "" ? local.avatar_project : var.avatar
-  avatar         = local.avatar_path == null ? null : (try(file(local.avatar_path), null) != null ? local.avatar_path : null)
+  avatar         = local.avatar_path == null ? null : fileexists(local.avatar_path) ? local.avatar_path : null
 
   merged_project_variables = merge(
     local.allowed_project_types[var.project_type].ci_variables,
