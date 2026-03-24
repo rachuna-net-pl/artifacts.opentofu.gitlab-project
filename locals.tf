@@ -7,7 +7,7 @@ locals {
   # Define the allowed project types as a map
   avatar_project = local.allowed_project_types[var.project_type].avatar == "" ? null : "${local.avatars_dir}/${local.allowed_project_types[var.project_type].avatar}.png"
   avatar_path    = var.avatar == "" ? local.avatar_project : var.avatar
-  avatar         = try(file(local.avatar_path), null) == null ? local.avatar_path : null
+  avatar         = local.avatar_path == null ? null : (try(file(local.avatar_path), null) != null ? local.avatar_path : null)
 
   merged_project_variables = merge(
     local.allowed_project_types[var.project_type].ci_variables,
