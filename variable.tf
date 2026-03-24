@@ -60,12 +60,12 @@ variable "allowed_avatar_types_json" {
 
 variable "avatar" {
   type        = string
-  description = "Type of the avatar for the group (default: from type)"
+  description = "Path to the avatar .png file (default: derived from project type)"
   default     = ""
 
   validation {
-    condition     = contains(local.allowed_avatar_types, var.avatar)
-    error_message = "Unsupported group type"
+    condition     = var.avatar == "" || endswith(var.avatar, ".png")
+    error_message = "Avatar must be a path to a .png file"
   }
 }
 
