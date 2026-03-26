@@ -41,7 +41,7 @@ resource "gitlab_project_label" "label" {
 
 ## Protected Branches
 resource "gitlab_branch_protection" "protected_branches" {
-  for_each = var.protected_branches
+  for_each = local.protected_branches
 
   project            = gitlab_project.project.id
   branch             = each.key
