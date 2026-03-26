@@ -9,6 +9,8 @@ locals {
   avatar_path    = var.avatar == "" ? local.avatar_project : var.avatar
   avatar         = local.avatar_path == null ? null : fileexists(local.avatar_path) ? local.avatar_path : null
 
+  protected_branches = var.protected_branches != null ? var.protected_branches : local.allowed_project_types[var.project_type].protected_branches
+
   merged_project_variables = merge(
     local.allowed_project_types[var.project_type].ci_variables,
     var.variables,

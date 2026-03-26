@@ -1,0 +1,174 @@
+{
+  "": {
+    "avatar": "",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "ansible-playbook": {
+    "avatar": "ansible",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "ansible",
+      "ansible-playbook"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "ansible-role": {
+    "avatar": "ansible",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "ansible",
+      "ansible-role"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "image-builder": {
+    "avatar": "container",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "container"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "gitlab-profile": {
+    "avatar": "gitlab-profile",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "gitlab-profile"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "gitlab-ci": {
+    "avatar": "gitlab",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "gitlab-ci"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "packer": {
+    "avatar": "packer",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "packer"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "nodejs": {
+    "avatar": "nodejs",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "nodejs"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      },
+      "develop": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "opentofu": {
+    "avatar": "opentofu",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "opentofu"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "opentofu-module": {
+    "avatar": "opentofu",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "opentofu",
+      "opentofu-module"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  },
+  "kubernetes-manifests": {
+    "avatar": "kubernetes",
+    "gitlab_ci_path": ".gitlab-ci.yml@pl.rachuna-net/cicd/gitlab-ci:v1.7.4",
+    "tags": [
+      "kubernetes",
+      "kubernetes-manifests"
+    ],
+    "ci_variables": {},
+    "protected_branches": {
+      "main": {
+        "push_access_level": "no one",
+        "merge_access_level": "maintainer",
+        "allow_force_push": false
+      }
+    }
+  }
+}
