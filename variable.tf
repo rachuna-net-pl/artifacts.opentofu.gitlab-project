@@ -127,16 +127,8 @@ variable "protected_branches" {
     merge_access_level = string
     allow_force_push   = optional(bool, false)
   }))
-  default = {
-    "develop" = {
-      push_access_level  = "no one"
-      merge_access_level = "maintainer"
-    }
-    "main" = {
-      push_access_level  = "no one"
-      merge_access_level = "maintainer"
-    }
-  }
+  description = "Protected branches configuration. If null, defaults are taken from allowed_project_types per project type."
+  default     = null
 }
 
 variable "labels" {
@@ -198,7 +190,7 @@ variable "approval_rules" {
   default = {}
 
   validation {
-    condition = alltrue([
+    condition = var.protected_branches == null ? true : alltrue([
       for rule in values(var.approval_rules) : alltrue([
         for branch in lookup(rule, "protected_branches", []) : contains(keys(var.protected_branches), branch)
       ])
