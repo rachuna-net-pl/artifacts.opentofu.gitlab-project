@@ -70,7 +70,7 @@ resource "gitlab_project_approval_rule" "approval_rule" {
 
 ## Protected Tags
 resource "gitlab_tag_protection" "protected_tags" {
-  for_each = var.protected_tags
+  for_each = local.merged_protected_tags
 
   project             = gitlab_project.project.id
   tag                 = each.key
