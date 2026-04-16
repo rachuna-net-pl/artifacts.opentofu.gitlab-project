@@ -52,12 +52,6 @@ variable "autoclose_referenced_issues" {
   description = "Autoclose referenced issues"
 }
 
-variable "allowed_avatar_types_json" {
-  type        = string
-  default     = ""
-  description = "Path to allowed avatar types json"
-}
-
 variable "avatar" {
   type        = string
   description = "Path to the avatar .png file (default: derived from project type)"

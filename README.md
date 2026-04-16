@@ -44,7 +44,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_allow_merge_on_skipped_pipeline"></a> [allow\_merge\_on\_skipped\_pipeline](#input\_allow\_merge\_on\_skipped\_pipeline) | Set to true if you want to treat skipped pipelines as if they finished with success. | `bool` | `false` | no |
-| <a name="input_allowed_avatar_types_json"></a> [allowed\_avatar\_types\_json](#input\_allowed\_avatar\_types\_json) | Path to allowed avatar types json | `string` | `""` | no |
 | <a name="input_allowed_project_types_json"></a> [allowed\_project\_types\_json](#input\_allowed\_project\_types\_json) | Path to allowed project types json | `string` | `""` | no |
 | <a name="input_approval_rules"></a> [approval\_rules](#input\_approval\_rules) | Project-level merge request approval rules keyed by rule name. | <pre>map(object({<br/>    approvals_required = number<br/>    user_ids           = optional(list(number), [])<br/>    usernames          = optional(list(string), [])<br/>    group_ids          = optional(list(number), [])<br/>    group_paths        = optional(list(string), [])<br/>    protected_branches = optional(list(string), [])<br/>  }))</pre> | `{}` | no |
 | <a name="input_archived"></a> [archived](#input\_archived) | Whether the GitLab project should be archived | `bool` | `false` | no |
@@ -127,9 +126,9 @@ Jeśli masz pomysły na ulepszenia, zgłoś problemy, rozwidl repozytorium lub u
 
 ---
 ## License
-Projekt licencjonowany jest na warunkach [Licencji MIT](LICENSE).
+[Licencja](LICENSE) oparta na zasadach Creative Commons BY-NC-SA 4.0, dostosowana do potrzeb projektu.
 
 ---
 # Author Information
-### &emsp; Maciej Rachuna
+### Maciej Rachuna
 # <img src="docs/logo.png" alt="rachuna-net.pl" height="100"/>

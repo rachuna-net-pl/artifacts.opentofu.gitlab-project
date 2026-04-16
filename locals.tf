@@ -1,7 +1,7 @@
 locals {
   avatars_dir = var.avatars_dir == "" ? path.root : var.avatars_dir
 
-  allowed_project_types_json = var.allowed_avatar_types_json == "" ? "${path.root}/data/allowed_project_types.json" : var.allowed_project_types_json
+  allowed_project_types_json = var.allowed_project_types_json == "" ? "${path.root}/data/allowed_project_types.json" : var.allowed_project_types_json
   allowed_project_types      = jsondecode(try(file(local.allowed_project_types_json), null) == null ? file("${path.module}/data/allowed_project_types.json") : file(local.allowed_project_types_json))
 
   # Define the allowed project types as a map
@@ -54,4 +54,9 @@ locals {
       }
     ]
   ])
+
+  merged_protected_tags = merge(
+    lookup(local.allowed_project_types[var.project_type], "protected_tags", {}),
+    var.protected_tags
+  )
 }
