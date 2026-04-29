@@ -1,4 +1,4 @@
-# <img src="docs/opentofu.png" alt="opentofu" height="20"/> gitlab-project
+# <img src="docs/opentofu.png" alt="opentofu" height="30"/> gitlab-project
 
 Zarządzanie projektami w GitLab
 
@@ -8,13 +8,13 @@ Zarządzanie projektami w GitLab
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.5 |
-| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.8.2 |
+| <a name="requirement_gitlab"></a> [gitlab](#requirement\_gitlab) | 18.11.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.8.2 |
+| <a name="provider_gitlab"></a> [gitlab](#provider\_gitlab) | 18.11.0 |
 
 ## Modules
 
@@ -24,20 +24,20 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/branch_protection) | resource |
-| [gitlab_pipeline_schedule.ci_schedule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/pipeline_schedule) | resource |
-| [gitlab_pipeline_schedule_variable.ci_schedule_variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/pipeline_schedule_variable) | resource |
-| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project) | resource |
-| [gitlab_project_approval_rule.approval_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project_approval_rule) | resource |
-| [gitlab_project_environment.environment](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project_environment) | resource |
-| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project_label) | resource |
-| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project_mirror) | resource |
-| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project_push_rules) | resource |
-| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/project_variable) | resource |
-| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/resources/tag_protection) | resource |
-| [gitlab_group.approval_rule_groups](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/data-sources/group) | data source |
-| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/data-sources/group) | data source |
-| [gitlab_user.approval_rule_users](https://registry.terraform.io/providers/gitlabhq/gitlab/18.8.2/docs/data-sources/user) | data source |
+| [gitlab_branch_protection.protected_branches](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/branch_protection) | resource |
+| [gitlab_pipeline_schedule.ci_schedule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/pipeline_schedule) | resource |
+| [gitlab_pipeline_schedule_variable.ci_schedule_variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/pipeline_schedule_variable) | resource |
+| [gitlab_project.project](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project) | resource |
+| [gitlab_project_approval_rule.approval_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project_approval_rule) | resource |
+| [gitlab_project_environment.environment](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project_environment) | resource |
+| [gitlab_project_label.label](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project_label) | resource |
+| [gitlab_project_mirror.mirror](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project_mirror) | resource |
+| [gitlab_project_push_rules.push_rule](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project_push_rules) | resource |
+| [gitlab_project_variable.variable](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/project_variable) | resource |
+| [gitlab_tag_protection.protected_tags](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/resources/tag_protection) | resource |
+| [gitlab_group.approval_rule_groups](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/data-sources/group) | data source |
+| [gitlab_group.parent](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/data-sources/group) | data source |
+| [gitlab_user.approval_rule_users](https://registry.terraform.io/providers/gitlabhq/gitlab/18.11.0/docs/data-sources/user) | data source |
 
 ## Inputs
 
@@ -51,7 +51,8 @@ No modules.
 | <a name="input_avatar"></a> [avatar](#input\_avatar) | Path to the avatar .png file (default: derived from project type) | `string` | `""` | no |
 | <a name="input_avatars_dir"></a> [avatars\_dir](#input\_avatars\_dir) | Avatars directory png files | `string` | `""` | no |
 | <a name="input_build_git_strategy"></a> [build\_git\_strategy](#input\_build\_git\_strategy) | The Git strategy. Defaults to fetch. | `string` | `"clone"` | no |
-| <a name="input_ci_schedules"></a> [ci\_schedules](#input\_ci\_schedules) | List of GitLab CI pipeline schedules for this project with optional variables. | <pre>list(object({<br/>    name          = string<br/>    description   = string<br/>    ref           = string<br/>    cron          = string<br/>    cron_timezone = optional(string)<br/>    active        = optional(bool)<br/>    variables = optional(map(object({<br/>      value         = string<br/>      variable_type = optional(string)<br/>    })))<br/>  }))</pre> | `[]` | no |
+| <a name="input_ci_push_repository_for_job_token_allowed"></a> [ci\_push\_repository\_for\_job\_token\_allowed](#input\_ci\_push\_repository\_for\_job\_token\_allowed) | Set to true if you want to allow pushing to the repository for job tokens. | `bool` | `false` | no |
+| <a name="input_ci_schedules"></a> [ci\_schedules](#input\_ci\_schedules) | List of GitLab CI pipeline schedules for this project with optional inputs and variables. | <pre>list(object({<br/>    name          = string<br/>    description   = string<br/>    ref           = string<br/>    cron          = string<br/>    cron_timezone = optional(string)<br/>    active        = optional(bool)<br/>    inputs = optional(list(object({<br/>      name  = string<br/>      value = any<br/>    })))<br/>    variables = optional(map(object({<br/>      value         = string<br/>      variable_type = optional(string)<br/>    })))<br/>  }))</pre> | `[]` | no |
 | <a name="input_default_branch"></a> [default\_branch](#input\_default\_branch) | Default branch | `string` | `""` | no |
 | <a name="input_description"></a> [description](#input\_description) | Repository Description | `string` | n/a | yes |
 | <a name="input_environments"></a> [environments](#input\_environments) | Project environments keyed by name. | <pre>map(object({<br/>    description          = optional(string)<br/>    auto_stop_setting    = optional(string)<br/>    external_url         = optional(string)<br/>    kubernetes_namespace = optional(string)<br/>    tier                 = optional(string)<br/>    stop_before_destroy  = optional(bool, false)<br/>  }))</pre> | `{}` | no |
@@ -82,7 +83,7 @@ No modules.
 
 ## CI pipeline schedulers
 
-Moduł umożliwia definiowanie schedulerów CI wraz z zestawem zmiennych przekazywanych do pipeline'ów. Każdy scheduler przyjmuje pola `name`, `description`, `ref`, `cron`, opcjonalne `cron_timezone` (domyślnie `UTC`), `active` (domyślnie `true`) oraz mapę `variables`, w której kluczem jest nazwa zmiennej, a wartością obiekt `{ value, variable_type }` z typem `env_var` (domyślnie) lub `file`. Gałąź podana w `ref` jest automatycznie poprzedzana `refs/heads/` dla zachowania zgodności z API GitLaba; pełne referencje (`refs/tags/...`) podawaj wprost.
+Moduł umożliwia definiowanie schedulerów CI wraz z zestawem inputów i zmiennych przekazywanych do pipeline'ów. Każdy scheduler przyjmuje pola `name`, `description`, `ref`, `cron`, opcjonalne `cron_timezone` (domyślnie `UTC`), `active` (domyślnie `true`), listę `inputs` z obiektami `{ name, value }` oraz mapę `variables`, w której kluczem jest nazwa zmiennej, a wartością obiekt `{ value, variable_type }` z typem `env_var` (domyślnie) lub `file`. Gałąź podana w `ref` jest automatycznie poprzedzana `refs/heads/` dla zachowania zgodności z API GitLaba; pełne referencje (`refs/tags/...`) podawaj wprost.
 
 Przykładowa konfiguracja dwóch schedulerów:
 
@@ -99,6 +100,16 @@ module "gitlab_project" {
       ref           = "main"
       cron          = "0 1 * * *"
       cron_timezone = "Europe/Warsaw"
+      inputs = [
+        {
+          name  = "environment"
+          value = "staging"
+        },
+        {
+          name  = "run_smoke_tests"
+          value = true
+        }
+      ]
       variables = {
         ENVIRONMENT = { value = "staging" }
         SMOKE_SCOPE = { value = "critical" }

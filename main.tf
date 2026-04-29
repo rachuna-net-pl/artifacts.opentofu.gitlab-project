@@ -15,7 +15,7 @@ resource "gitlab_project" "project" {
   only_allow_merge_if_all_discussions_are_resolved = true
   only_allow_merge_if_pipeline_succeeds            = var.only_allow_merge_if_pipeline_succeeds
   allow_merge_on_skipped_pipeline                  = var.allow_merge_on_skipped_pipeline
-  ci_push_repository_for_job_token_allowed         = true
+  ci_push_repository_for_job_token_allowed         = var.ci_push_repository_for_job_token_allowed
 
   lifecycle {
     prevent_destroy = true
@@ -111,6 +111,7 @@ resource "gitlab_pipeline_schedule" "ci_schedule" {
   cron          = each.value.cron
   cron_timezone = each.value.cron_timezone
   active        = each.value.active
+  inputs        = length(each.value.inputs) == 0 ? null : each.value.inputs
 }
 
 resource "gitlab_pipeline_schedule_variable" "ci_schedule_variable" {

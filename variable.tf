@@ -88,7 +88,7 @@ variable "gitlab_ci_path" {
 }
 
 variable "ci_schedules" {
-  description = "List of GitLab CI pipeline schedules for this project with optional variables."
+  description = "List of GitLab CI pipeline schedules for this project with optional inputs and variables."
   type = list(object({
     name          = string
     description   = string
@@ -96,6 +96,10 @@ variable "ci_schedules" {
     cron          = string
     cron_timezone = optional(string)
     active        = optional(bool)
+    inputs = optional(list(object({
+      name  = string
+      value = any
+    })))
     variables = optional(map(object({
       value         = string
       variable_type = optional(string)
@@ -106,6 +110,22 @@ variable "ci_schedules" {
   validation {
     condition     = length(var.ci_schedules) == length(toset([for schedule in var.ci_schedules : schedule.name]))
     error_message = "CI schedule names must be unique."
+  }
+
+  validation {
+    condition = alltrue([
+      for schedule in var.ci_schedules : length(coalesce(lookup(schedule, "inputs", null), [])) <= 20
+    ])
+    error_message = "CI schedules can have at most 20 inputs."
+  }
+
+  validation {
+    condition = alltrue([
+      for schedule in var.ci_schedules : length(coalesce(lookup(schedule, "inputs", null), [])) == length(toset([
+        for input in coalesce(lookup(schedule, "inputs", null), []) : input.name
+      ]))
+    ])
+    error_message = "CI schedule input names must be unique within each schedule."
   }
 
   validation {
@@ -261,6 +281,12 @@ variable "only_allow_merge_if_pipeline_succeeds" {
 
 variable "allow_merge_on_skipped_pipeline" {
   description = "Set to true if you want to treat skipped pipelines as if they finished with success."
+  type        = bool
+  default     = false
+}
+
+variable "ci_push_repository_for_job_token_allowed" {
+  description = "Set to true if you want to allow pushing to the repository for job tokens."
   type        = bool
   default     = false
 }
