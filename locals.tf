@@ -43,6 +43,7 @@ locals {
       cron          = schedule.cron
       cron_timezone = coalesce(lookup(schedule, "cron_timezone", null), "UTC")
       active        = coalesce(lookup(schedule, "active", null), true)
+      inputs        = coalesce(lookup(schedule, "inputs", null), [])
       variables     = coalesce(lookup(schedule, "variables", null), {})
     }
   }
